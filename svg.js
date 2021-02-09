@@ -20,10 +20,19 @@ $(document).ready(function(){
     var s = SVG("container")
     // grpHalo = s.group();
     // createPoints();
-
-    var r = new Reader("#image")
-    var arr = r.read()
-    var b = new Board(s, arr)
+    $img = $('#image')
+    $img.on('load', function(){
+        console.log('LOADED')
+        var r = new Reader("#image")
+        var arr = r.read()
+        var b = new Board(s, arr)
+    })
+    .each(function(){
+        if(this.complete) {
+          $(this).trigger('load');
+        }
+    });
+    
 })
 // function loadMap() {
 //     // s = Snap("#mapa");
